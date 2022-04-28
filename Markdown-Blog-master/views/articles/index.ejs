@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.navbar-nav {
+margin-left: auto;
+}
+
+.navbar-btn:hover {
+color: #FFF;
+background-color: #337AB7 !important;
+border-color: #2E6DA4 !important;
+}
+</style>
+<section id="nav">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white ml-auto">
+    <a class="navbar-brand" href="#">HURDL</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active navbar-btn" aria-current="page" href="/">Welcome</a>
+        <a class="nav-link active navbar-btn" aria-current="page" href="/">HURDL and the World</a>
+        <a class="nav-link active navbar-btn" aria-current="page" href="/">What We Do</a>
+        <a class="nav-link active navbar-btn" aria-current="page" href="/public/who_we_are.html">Who We Are</a>
+        <a class="nav-link active navbar-btn" aria-current="page" href="/">Blog</a>
+      </div>
+    </div>
+  </nav>
+</section>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4">Blog Articles</h1>
+    <a href="/articles/new" class="btn btn-success">New Article</a>
+
+    <% articles.forEach(article => { %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h4 class="card-title"><%= article.title %></h4>
+          <div class="card-subtitle text-muted mb-2">
+          </div>
+          <div class="card-text mb-2"><%= article.description %></div>
+          <a href="articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
+          <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+          <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
